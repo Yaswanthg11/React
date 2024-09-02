@@ -1,22 +1,18 @@
 import React from 'react';
-function Class2()
+const Class2=()=>
 {
-    let myobject={name:"Madras"};
-    let newObject=myobject;
-    myobject.name="Chennai";
-    console.log(myobject);
-    
-    let myarray=["a","e","i","o"];
-    let vowelArray=myarray;
-    myarray.push("u");
-    console.log(myarray);
-}
-function Cw2()
-{
+    const rs={
+        backgroundColor: 'lightblue',
+        padding: '10px',
+        color: 'darkblue',
+        border: 'ipx solid',
+        borderradius: '5px'
+    };
     return(
-        <div>
-            <button onClick={Class2}>Cw2</button>
+        <div style={rs}>
+            <h1 style={{color:"green"}}>Inline Style in JSX Example</h1>
+            <p style={{color:"darkblue",fontSize:"16px"}}>This is the paragrah with the inline styles applied</p>
         </div>
     )
 }
-export default Cw2;
+export default Class2;
