@@ -1,16 +1,24 @@
 import React from 'react';
-const ProductListComponent=({productList})=>
+function Singers()
 {
+    const singersList = [
+        { name: 'Elvis Presley', year: 1954 },
+        { name: 'Michael Jackson', year: 1971 },
+        { name: 'Madonna', year: 1982 },
+        { name: 'Freddie Mercury', year: 1970 },
+      ];
 return(
-    <ul>
-        {productList.map((product)=>(
-            <li key={product.id}>
-                <div>{product.name}</div>
-                <img src={`/${product.imageUrl}`} alt={product.name}style={{width:'100px',height:'auto'}}/>
-                <div>${product.price.toFixed(2)}</div>
-            </li>
-        ))}
-    </ul>
+    <div>
+<h2>Singers</h2>
+<ul>
+    {singersList.map((singer,index)=>(
+    <li key={index}>
+{singer.name}- Active since 
+{singer.year}
+</li>
+    ))}
+</ul>
+</div>
 )
 }
-export default ProductListComponent;
+export default Singers;
