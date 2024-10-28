@@ -1,21 +1,23 @@
-import React from 'react'
-function Chall()
-{
-    const name1="Priya";
-    const name2="Priya";
-    const primitive=name1===name2;
-    const object1={name:"Praveena"};
-    const object2={name:"Praveena"};
-    const reference =object1===object2;
-    console.log(primitive);
-    console.log(reference);
-}
-function Cy1()
-{
-    return(
-        <div>
-            <button onClick={Chall}>Cy1</button>
-        </div>
-    )
-}
-export default Cy1;
+// src/components/PriceFilter.js
+import React, { useContext } from 'react';
+import { ProductContext } from './ProductContext';
+
+const PriceFilter = () => {
+  const { priceRange, setPriceRange } = useContext(ProductContext);
+
+  return (
+    <div>
+      <h3>Filter by Price</h3>
+      <input
+        type="range"
+        min="0"
+        max="1000"
+        value={priceRange[1]}
+        onChange={(e) => setPriceRange([0, Number(e.target.value)])}
+      />
+      <p>Up to ${priceRange[1]}</p>
+    </div>
+  );
+};
+
+export default PriceFilter;

@@ -1,23 +1,19 @@
-import React from 'react';
-import Team from './D1hw11';
-function World()
-{
-    return(
-        <div>
-            <h1>Welcome to the World Component</h1>
-            <Team />
-        </div>
-    )
-}
-export default World;
 
-//File Name:D1hw11:
+// src/components/Navbar.js
 import React from 'react';
-function Team(){
-    return(
-        <div>
-            <p>This is Team Functional Component</p>
-        </div>
-    )
-}
-export default Team;
+import { Link } from 'react-router-dom';
+
+const Navbar = () => {
+  return (
+    <nav>
+      <h2>Product Store</h2>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/categories">Categories</Link></li>
+        <li><Link to="/products">Products</Link></li>
+      </ul>
+    </nav>
+  );
+};
+
+export default Navbar;

@@ -1,44 +1,47 @@
-import React from 'react';
-const Dy=()=>
-{
-    const imgurl="https://tse3.mm.bing.net/th?id=OIP.lhWQQ55idlTwQwmsq6q7IQHaFY&pid=Api&P=0&h=180";
-    const a={
-        backgroundColor: 'lightblue',
-        width: '500px',
-        height: '400px',
-        padding: '100px',
-        border: '1px solid blue',
-        borderradius: '5px'
+// src/context/ProductContext.js
+import React, { createContext, useState, useEffect } from 'react';
+
+export const ProductContext = createContext();
+
+const ProductProvider = ({ children }) => {
+  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [priceRange, setPriceRange] = useState([0, 100]);
+
+  // Fetch categories and products from a mock API
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const categoriesData = ['Electronics', 'Clothing', 'Accessories', 'Home Appliances'];
+      setCategories(categoriesData);
     };
-    const b={
-        border: '1px solid black',
-        width: '500px',
-        height: '200px',
-        backgroundColor: 'lightgrey',
-        borderradius: '15px'
+    
+    const fetchProducts = async () => {
+      const productsData = [
+        { id: 1, name: 'Laptop', category: 'Electronics', price: 900 },
+        { id: 2, name: 'Shirt', category: 'Clothing', price: 30 },
+        { id: 3, name: 'Headphones', category: 'Accessories', price: 100 },
+        { id: 4, name: 'Microwave', category: 'Home Appliances', price: 150 }
+      ];
+      setProducts(productsData);
     };
-    const c={
-        border: '1px solid black',
-        width: '500px',
-        height: '120px',
-        backgoundColor: 'lightgrey',
-        borderradius: '15px'
-    };
-    return(
-        <center>
-            <div style={a}>
-                <h1>Car and Loaction Info</h1>
-                <div style={b}>
-                    <h3><b><center>Tesla Model S</center></b></h3>
-                    <center><img src={imgurl} alt='Notfound' height="100px" weight="100px"></img></center>
-                </div>
-                <br></br><br></br>
-                <div style={c}>
-                    <h4><center>Tesla</center></h4>
-                    <h5><center>Palo Alto</center></h5>
-                </div>
-            </div>
-        </center>
-    )
-}
-export default Dy;
+
+    fetchCategories();
+    fetchProducts();
+  }, []);
+
+  return (
+    <ProductContext.Provider value={{
+      categories,
+      products,
+      selectedCategory,
+      setSelectedCategory,
+      priceRange,
+      setPriceRange
+    }}>
+      {children}
+    </ProductContext.Provider>
+  );
+};
+
+export default ProductProvider; // <-- Make sure this export statement is present
