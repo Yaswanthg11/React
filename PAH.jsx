@@ -1,23 +1,28 @@
-import React, { useState, useEffect } from 'react';
-
-function Pah() {
-  const [message, setMessage] = useState("Hello dear one, learning React...?");
-
-  useEffect(() => {
-    console.log("useEffect hook called");
-    const timer = setTimeout(() => {
-      setMessage("Great... This is time to learn about HOOKS");
-    }, 2000);
-
-    // Cleanup function to avoid memory leaks
-    return () => clearTimeout(timer);
-  }, []); // Empty dependency array ensures the effect runs only once
-
-  return (
-    <div>
-      <h1>{message}</h1>
-    </div>
-  );
-}
-
-export default Pah;
+const initialState = {
+    cart: [],
+  };
+  
+  export const cartReducer = (state = initialState, action) => {
+    switch (action.type) {
+      case 'ADD_ITEM':
+        return {
+          ...state,
+          cart: [...state.cart, action.payload],
+        };
+      case 'REMOVE_ITEM':
+        return {
+          ...state,
+          cart: state.cart.filter(item => item.id !== action.payload.id),
+        };
+      case 'UPDATE_ITEM':
+        return {
+          ...state,
+          cart: state.cart.map(item =>
+            item.id === action.payload.id ? { ...item, ...action.payload } : item
+          ),
+        };
+      default:
+        return state;
+    }
+  };
+  

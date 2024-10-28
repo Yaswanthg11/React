@@ -1,29 +1,19 @@
-// src/components/ProductList.js
-import React, { useContext } from 'react';
-import { ProductContext } from './ProductContext';
-
-const ProductList = () => {
-  const { products, selectedCategory, priceRange } = useContext(ProductContext);
-
-  const filteredProducts = products.filter(product => {
-    return (
-      (selectedCategory === '' || product.category === selectedCategory) &&
-      product.price <= priceRange[1]
-    );
-  });
-
-  return (
+import React,{useState,useEffect} from 'react';
+function Hookeffect()
+{
+    const[message,setMessage]=useState('Hello dear one,learning React...?')
+    useEffect(()=>
+    {
+        console.log('use effect hook called');
+        setTimeout(()=>
+        {
+            setMessage("Great.... This is time to learn about HOOKS");
+        },2000)
+    })
+return(
     <div>
-      <h3>Product List</h3>
-      <ul>
-        {filteredProducts.map(product => (
-          <li key={product.id}>
-            {product.name} - {product.category} - ${product.price}
-          </li>
-        ))}
-      </ul>
+<h2>{message}</h2>
     </div>
-  );
-};
-
-export default ProductList;
+)
+}
+export default Hookeffect;
