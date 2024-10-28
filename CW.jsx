@@ -1,43 +1,22 @@
-import React, { useState } from "react";
-
-function AddUser() {
-  const [users, setUsers] = useState([
-    { id: 1, name: "Sheema" },
-    { id: 2, name: "Swathi" }
-  ]);
-  const [newUserName, setNewUserName] = useState("");
-
-  const addUser = () => {
-    if (newUserName.trim() === "") return; 
-
-    const newUser = {
-      id: users.length + 1, 
-      name: newUserName
-    };
-
-    setUsers([...users, newUser]);
-    setNewUserName(""); 
-  };
-
-  return (
-    <>
-      <input
-        type="text"
-        value={newUserName}
-        onChange={(e) => setNewUserName(e.target.value)}
-        placeholder="Enter user name"
-      />
-      <button onClick={addUser}>Add User</button>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            <p>id: {user.id}</p>
-            <p>name: {user.name}</p>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
+import React,{useState,useEffect} from 'react';
+import Axios from 'axios';
+function Get()
+{
+    const[book,setBook]=useState([]);
+    useEffect(()=>{
+Axios.get('http://localhost:3000/books')
+.then(response=>setBook(response.data))
+    })
+return(
+    <div>
+<h3>My Book List</h3>
+{book.map((bo)=>
+<div key={bo.id}>
+    <div>{bo.title}</div>
+    <div>{bo.author}</div>
+    </div>
+)}
+    </div>
+)
 }
-
-export default AddUser;
+export default Get;
